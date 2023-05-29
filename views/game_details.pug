@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div(class="content")
+    h1 Game: #{game.title}
+    img(src=game.img_url)
+    p Developer: 
+      a(href=game.studio.url) #{game.studio.name}
+    p Platforms: 
+      for platform, index in game.platforms
+        a(href=platform.url) #{platform.name}
+        if index < game.platforms.length - 1
+          |,
+    p Description: #{game.description}
+    p Price: #{game.price}
+    p Number in stock: #{game.num_in_stock}
+

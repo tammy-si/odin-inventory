@@ -15,6 +15,11 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 exports.game_list = asyncHandler(async (req, res, next) => {
     var allGames = await Game.find();
-    console.log(allGames);
-    res.render("game_list", {allGames: allGames})
+    res.render("game_list", {title: "Games", allGames: allGames})
 });
+
+exports.game_detail = asyncHandler(async (req, res, next) => {
+    const game = await Game.findById(req.params.id).populate("studio").populate("platforms").exec();
+    res.render("game_details", {title: "Games", game: game})
+});
+
