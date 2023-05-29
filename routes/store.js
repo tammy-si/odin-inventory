@@ -8,4 +8,6 @@ var studio_controller = require("../controllers/studioController");
 /* GET home page. */
 router.get('/', game_controller.index);
 
+router.get('/games', game_controller.game_list);
+
 module.exports = router;

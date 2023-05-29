@@ -1,7 +1,11 @@
-body,html  {
+body,html {
   height: 100%;
 }
 
 main {
   height: 100%;
+}
+
+.nav-link:hover {
+  color: lightblue !important;
 }

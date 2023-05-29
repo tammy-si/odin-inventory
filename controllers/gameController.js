@@ -13,4 +13,8 @@ exports.index = asyncHandler(async (req, res, next) => {
     res.render("index", {title: "Fake-Game-Store", gameCount: gameCount, platformCount: platformCount, studioCount: studioCount})
 })
 
-
+exports.game_list = asyncHandler(async (req, res, next) => {
+    var allGames = await Game.find();
+    console.log(allGames);
+    res.render("game_list", {allGames: allGames})
+});
