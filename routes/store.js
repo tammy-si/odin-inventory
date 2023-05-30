@@ -16,6 +16,8 @@ router.post('/games/add', game_controller.game_add_post);
 
 router.get('/games/:id', game_controller.game_detail);
 
+router.get('/games/:id/delete', game_controller.game_delete);
+
 
 /* studios route */
 router.get('/studios', studio_controller.studio_list);
