@@ -85,55 +85,57 @@ console.log("Adding platforms");
 }
 
 async function createGames() {
-console.log("Adding games");
-await Promise.all([
-    gamesCreate(
-        "Spider-Man",
-        studios[3],
-        "Marvel's Spider-Man is an open-world third-person action-adventure game, in which the player controls Peter Parker, under his superhero identity Spider-Man, through Manhattan, New York City to fight crime.",
-        40,
-        2,
-        [platforms[0], platforms[2]]
-    ),
-    gamesCreate(
-        "The Legend of Zelda: Tears of the Kingdom",
-        studios[0],
-        "In this sequel to the Legend of Zelda: Breath of the Wild game, you'll decide your own path through the sprawling landscapes of Hyrule and the mysterious islands floating in the vast skies above.",
-        69.99,
-        3,
-        [platforms[3]]
-    ),
-    gamesCreate(
-        "Grand Theft Auto V",
-        studios[2],
-        "Grand Theft Auto V is an action-adventure game played from either a third-person or first-person perspective. Players complete missions—linear scenarios with set objectives—to progress through the story. Outside of the missions, players may freely roam the open world.",
-        20,
-        1,
-        [platforms[0], platforms[2], platforms[4]]
-    ),
-    gamesCreate(
-        "The Last of Us Part I",
-        studios[1],
-        "Players control Joel, a smuggler tasked with escorting a teenage girl, Ellie, across a post-apocalyptic United States. The Last of Us is played from a third-person perspective",
-        69.99,
-        2,
-        [platforms[0], platforms[2]]
-    ),
-    gamesCreate(
-        "The Last of Us Part II",
-        studios[1],
-        "Set five years after The Last of Us (2013), the game focuses on two playable characters in a post-apocalyptic United States whose lives intertwine: Ellie, who sets out in revenge for a murder, and Abby, a soldier who becomes involved in a conflict between her militia and a religious cult.",
-        39.99,
-        2,
-        [platforms[2]]
-    ),
-    gamesCreate(
-        "Animal Crossing New Horizons",
-        studios[0],
-        "In New Horizons, the player controls a character who moves to a deserted island after purchasing a getaway package from Tom Nook, accomplishes assigned tasks, and develops the island as they choose. They can gather and craft items, customize the island, and develop it into a community of anthropomorphic animals.",
-        59.99,
-        4,
-        [platforms[3]]
-    ),
-]);
+    console.log("Adding games");
+    platforms.sort();
+    studios.sort();
+    await Promise.all([
+        gamesCreate(
+            "Spider-Man",
+            studios[0],
+            "Marvel's Spider-Man is an open-world third-person action-adventure game, in which the player controls Peter Parker, under his superhero identity Spider-Man, through Manhattan, New York City to fight crime.",
+            40,
+            2,
+            [platforms[2], platforms[3]]
+        ),
+        gamesCreate(
+            "The Legend of Zelda: Tears of the Kingdom",
+            studios[2],
+            "In this sequel to the Legend of Zelda: Breath of the Wild game, you'll decide your own path through the sprawling landscapes of Hyrule and the mysterious islands floating in the vast skies above.",
+            69.99,
+            3,
+            [platforms[1]]
+        ),
+        gamesCreate(
+            "Grand Theft Auto V",
+            studios[3],
+            "Grand Theft Auto V is an action-adventure game played from either a third-person or first-person perspective. Players complete missions—linear scenarios with set objectives—to progress through the story. Outside of the missions, players may freely roam the open world.",
+            20,
+            1,
+            [platforms[2], platforms[3], platforms[4]]
+        ),
+        gamesCreate(
+            "The Last of Us Part I",
+            studios[1],
+            "Players control Joel, a smuggler tasked with escorting a teenage girl, Ellie, across a post-apocalyptic United States. The Last of Us is played from a third-person perspective",
+            69.99,
+            2,
+            [platforms[2], platforms[3]]
+        ),
+        gamesCreate(
+            "The Last of Us Part II",
+            studios[1],
+            "Set five years after The Last of Us (2013), the game focuses on two playable characters in a post-apocalyptic United States whose lives intertwine: Ellie, who sets out in revenge for a murder, and Abby, a soldier who becomes involved in a conflict between her militia and a religious cult.",
+            39.99,
+            2,
+            [platforms[2]]
+        ),
+        gamesCreate(
+            "Animal Crossing New Horizons",
+            studios[2],
+            "In New Horizons, the player controls a character who moves to a deserted island after purchasing a getaway package from Tom Nook, accomplishes assigned tasks, and develops the island as they choose. They can gather and craft items, customize the island, and develop it into a community of anthropomorphic animals.",
+            59.99,
+            4,
+            [platforms[1]]
+        ),
+    ]);
 }

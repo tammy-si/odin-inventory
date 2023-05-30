@@ -5,14 +5,14 @@ const Game = require("../models/game");
 
 
 exports.platform_list = asyncHandler(async(req, res, next) => {
-    const allPlatforms = await Platform.find();
+    const allPlatforms = await Platform.find().sort({name: 1}).exec();
     res.render("platform_list", {title: "Platforms", allPlatforms: allPlatforms})
 })
 
 exports.platform_detail = asyncHandler(async (req, res, next) => {
     const [platform, allGamesOnPlatform] = await Promise.all([
         Platform.findById(req.params.id).exec(),
-        Game.find({platforms: req.params.id}).exec()
+        Game.find({platforms: req.params.id}).sort({title: 1}).exec()
     ]);
     if (platform === null) {
         // No results.
