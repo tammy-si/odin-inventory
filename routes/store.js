@@ -15,8 +15,11 @@ router.get('/games/:id', game_controller.game_detail);
 /* studios route */
 router.get('/studios', studio_controller.studio_list);
 
+router.get('/studios/:id', studio_controller.studio_detail);
 
 /* platforms route */
 router.get('/platforms', platform_controller.platform_list);
+
+router.get('/platforms/:id', platform_controller.platform_detail);
 
 module.exports = router;
