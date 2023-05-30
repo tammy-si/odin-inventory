@@ -3,31 +3,31 @@ extends layout
 block content
   div(class="content")
     h1 Add a game
-    form(action='/games/add' method="POST")
+    form(action='' method="POST")
       .form-group
         label(for='title') Title
-        input.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter game title' required)
+        input.form-control(name="title" type='text' aria-describedby='emailHelp' placeholder='Enter game title' required)
       .form-group 
         label(for='studio') Developer
-        select
+        select(name='studio')
           option(value='') N/A
           for studio in allStudios 
             option(value=studio._id) #{studio.name}
       .form-group
         label(for='description') Description
-        input.form-control(type='text' placeholder='Description' required)
+        input.form-control(name='description' type='text' placeholder='Description' required)
       .form-group
         label(for='price') Price
-        input.form-control(type='number' min=0 required placeholder=0)
+        input.form-control(name='price' type='number' min=0 required placeholder=0)
       .form-group
         label(for='num_in_stock') Number in stock
-        input.form-control(type='number' min=0 required placeholder=0) 
+        input.form-control(name='num_in_stock' type='number' min=0 required placeholder=0) 
       .form-group
         label(for='img_url') Image URL
-        input.form-control(type='text' placeholder='Image URL')
+        input.form-control(name='img_url' type='text' placeholder='Image URL')
       p Available on:
       for platform in allPlatforms
         .form-check
-          input#exampleCheck1.form-check-input(type='checkbox')
+          input.form-check-input(type='checkbox' name='platform' value=platform._id)
           label.form-check-label(for=platform._id) #{platform.name}
       button.btn.btn-primary(type='submit') Submit

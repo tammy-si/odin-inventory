@@ -12,6 +12,8 @@ router.get('/games', game_controller.game_list);
 
 router.get('/games/add', game_controller.game_add_get);
 
+router.post('/games/add', game_controller.game_add_post);
+
 router.get('/games/:id', game_controller.game_detail);
 
 

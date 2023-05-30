@@ -5,7 +5,10 @@ block content
     h1 Game: #{game.title}
     img(src=game.img_url)
     p Developer: 
-      a(href=game.studio.url) #{game.studio.name}
+      if (game.studio)
+        a(href=game.studio.url) #{game.studio.name}
+      else 
+        | N/A
     p Platforms: 
       for platform, index in game.platforms
         a(href=platform.url) #{platform.name}
