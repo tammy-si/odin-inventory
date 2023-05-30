@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const GameSchema = new Schema({
     title: { type: String, required: true},
-    studio: {type: Schema.Types.ObjectId, ref: "Studio", required: true},
+    studio: {type: Schema.Types.ObjectId, ref: "Studio"},
     description: {type: String, required: true},
     price: { type: Number, required: true},
     num_in_stock: {type: Number, required: true},

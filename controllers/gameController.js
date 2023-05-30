@@ -15,7 +15,6 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 exports.game_list = asyncHandler(async (req, res, next) => {
     var allGames = await Game.find().sort({title: 1}).exec();
-    console.log(allGames);
     res.render("game_list", {title: "Games", allGames: allGames})
 });
 
@@ -27,7 +26,17 @@ exports.game_detail = asyncHandler(async (req, res, next) => {
         err.status = 404;
         return next(err);
     }
-    console.log(game);
     res.render("game_details", {title: "Games", game: game})
 });
 
+exports.game_add_get = asyncHandler(async (req, res, next) => {
+    const [allStudios, allPlatforms] = await Promise.all([
+        Studio.find().exec(),
+        Platform.find().exec()
+    ]) 
+    res.render("game_form", {title: "Add Game", allStudios:allStudios, allPlatforms:allPlatforms});
+})
+
+exports.game_add_post = asyncHandler(async (req, res, next) => {
+
+})

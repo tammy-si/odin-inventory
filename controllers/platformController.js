@@ -20,6 +20,14 @@ exports.platform_detail = asyncHandler(async (req, res, next) => {
         err.status = 404;
         return next(err);
     }
-    console.log(allGamesOnPlatform);
     res.render("platform_details", {title: "Platforms", platform: platform, allGamesOnPlatform: allGamesOnPlatform})
 });
+
+
+exports.platform_add_get = asyncHandler(async (req, res, next) => {
+    res.render("platform_form", {title: "Add Platform"});
+})
+
+exports.platform_add_post = asyncHandler(async (req, res, next) => {
+
+})

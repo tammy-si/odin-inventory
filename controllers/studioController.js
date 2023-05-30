@@ -21,3 +21,11 @@ exports.studio_detail = asyncHandler(async (req, res, next) => {
     }
     res.render("studio_details", {title: "Studios", studio: studio, allGamesByStudio: allGamesByStudio})
 });
+
+exports.studio_add_get = asyncHandler(async (req, res, next) => {
+    res.render("studio_form", {title: "Add Studio"});
+})
+
+exports.game_add_post = asyncHandler(async (req, res, next) => {
+
+})

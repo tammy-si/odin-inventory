@@ -10,7 +10,10 @@ router.get('/', game_controller.index);
 
 router.get('/games', game_controller.game_list);
 
+router.get('/games/add', game_controller.game_add_get);
+
 router.get('/games/:id', game_controller.game_detail);
+
 
 /* studios route */
 router.get('/studios', studio_controller.studio_list);
