@@ -1,0 +1,2 @@
+# Inventory-Application
+This was to practice MVC web development with Node, Express, and MongoDB. It's a fake video game store/management type of site. It's based of the Express Tutorial from the mdn web docs.  
