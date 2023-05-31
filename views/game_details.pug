@@ -3,7 +3,7 @@ extends layout
 block content
   div(class="content")
     h1 Game: #{game.title}
-    img(src=game.img_url)
+    img(class='detail_img' src=game.img_url)
     p Developer: 
       if (game.studio)
         a(href=game.studio.url) #{game.studio.name}

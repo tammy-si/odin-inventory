@@ -3,11 +3,11 @@ extends layout
 block content
   div(class="content")
     h1 Platform: #{platform.name}
-    img(src=platform.img_url)
+    img(class='detail_img' src=platform.img_url)
     p Games on this platform: 
       for game in allGamesOnPlatform
         br
         a(href=game.url) #{game.title} 
     a(href=platform.url+'/delete' role="button" class="btn btn-danger") Delete platform
-    a(href=platform.url+'/update' role="button" class="btn btn-info") Update platform
+    a(href=platform.url+'/update' role="button" class="btn btn-info") Update studio
 

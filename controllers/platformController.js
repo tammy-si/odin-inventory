@@ -34,12 +34,12 @@ exports.platform_add_post = [
     (req, res, next) => {
         // for the image
         var http = new XMLHttpRequest();
-        http.open('HEAD', req.body.img_url, false);
+        http.open('GET', req.body.img_url, true);
         try {
             http.send()
         } catch {
             req.body.img_url = 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
-        };
+        };       
         next();
     },
     // turn all the platforms into an array
@@ -80,7 +80,7 @@ exports.platform_update_post = [
     (req, res, next) => {
         // for the image
         var http = new XMLHttpRequest();
-        http.open('HEAD', req.body.img_url, false);
+        http.open('GET', req.body.img_url, true);
         try {
             http.send()
         } catch {

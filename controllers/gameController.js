@@ -53,7 +53,7 @@ exports.game_add_post = [
     }
     // for the image
     var http = new XMLHttpRequest();
-    http.open('HEAD', req.body.img_url, false);
+    http.open('GET', req.body.img_url, true);
     try {
         http.send()
     } catch {
@@ -145,7 +145,7 @@ exports.game_update_post = [
     }
     // for the image
     var http = new XMLHttpRequest();
-    http.open('HEAD', req.body.img_url, false);
+    http.open('GET', req.body.img_url, true);
     try {
         http.send()
     } catch {

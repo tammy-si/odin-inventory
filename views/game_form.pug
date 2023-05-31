@@ -21,7 +21,7 @@ block content
         input.form-control(name='description' type='text' placeholder='Description' value=(game===undefined ? "": game.description)  required)
       .form-group
         label(for='price') Price
-        input.form-control(name='price' type='number' min=0 required value=(game===undefined ? 0: game.price) )
+        input.form-control(name='price' type='number' step=".01" min=0 required value=(game===undefined ? 0: game.price) )
       .form-group
         label(for='num_in_stock') Number in stock
         input.form-control(name='num_in_stock' type='number' min=0 required value=(game===undefined ? 0: game.num_in_stock)) 
