@@ -27,6 +27,12 @@ router.get('/studios/:id', studio_controller.studio_detail);
 /* platforms route */
 router.get('/platforms', platform_controller.platform_list);
 
+router.get('/platforms/add', platform_controller.platform_add_get);
+
+router.post('/platforms/add', platform_controller.platform_add_post);
+
 router.get('/platforms/:id', platform_controller.platform_detail);
+
+router.get('/platforms/:id/delete', platform_controller.platform_delete);
 
 module.exports = router;

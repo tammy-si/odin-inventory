@@ -97,7 +97,6 @@ exports.game_add_post = [
 ]
 
 exports.game_delete = asyncHandler(async(req, res, next) => {
-    console.log(req.params)
     await Game.findByIdAndDelete(req.params.id);
     res.redirect('/store/games/');
 })
