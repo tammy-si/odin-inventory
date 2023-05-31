@@ -6,8 +6,8 @@ block content
     form(action='' method="POST")
       .form-group
         label(for='name') Name
-        input.form-control(name="name" type='text' placeholder='Enter platform name' required)
+        input.form-control(name="name" type='text' placeholder='Enter platform name' value=(platform ? platform.name : "") required)
       .form-group
         label(for='img_url') Image URL
-        input.form-control(name='img_url' type='text' placeholder='Image URL')
+        input.form-control(name='img_url' type='text' placeholder='Image URL' value=(platform ? platform.img_url : ""))
       button.btn.btn-primary(type='submit') Submit

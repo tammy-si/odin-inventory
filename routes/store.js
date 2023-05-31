@@ -48,4 +48,8 @@ router.get('/platforms/:id', platform_controller.platform_detail);
 
 router.get('/platforms/:id/delete', platform_controller.platform_delete);
 
+router.get('/platforms/:id/update', platform_controller.platform_update_get);
+
+router.post('/platforms/:id/update', platform_controller.platform_update_post);
+
 module.exports = router;

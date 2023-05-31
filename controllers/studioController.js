@@ -48,10 +48,9 @@ exports.studio_add_post = [
         .escape(),
     asyncHandler(async(req, res, next) => {
         const errors = validationResult(req);
-        // create a new Game
         const studio = new Studio({
             name: req.body.name,
-            platforms: req.body.platform    
+            img_url: req.body.img_url    
         })     
         if (!errors.isEmpty()) {
             res.render("studio_form", {title: "Add Studio"});
@@ -97,7 +96,7 @@ exports.studio_update_post = [
         // create a new Game
         const studio = new Studio({
             name: req.body.name,
-            platforms: req.body.platform, 
+            img_url: req.body.img_url,    
             _id: req.params.id 
         })     
         if (!errors.isEmpty()) {

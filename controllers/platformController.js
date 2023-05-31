@@ -52,7 +52,7 @@ exports.platform_add_post = [
         // create a new Game
         const platform = new Platform({
             name: req.body.name,
-            platforms: req.body.platform    
+            img_url: req.body.img_url    
         })     
         if (!errors.isEmpty()) {
             res.render("platform_form", {title: "Add Platform"});
@@ -70,3 +70,43 @@ exports.platform_delete = asyncHandler(async(req, res, next) => {
     await Platform.findByIdAndDelete(req.params.id);
     res.redirect('/store/platforms/');
 })
+
+exports.platform_update_get = asyncHandler(async(req, res, next) => {
+    const platform = await Platform.findById(req.params.id).exec();
+    res.render("platform_form", {title: "Update platform", platform: platform})
+}) 
+
+exports.platform_update_post = [
+    (req, res, next) => {
+        // for the image
+        var http = new XMLHttpRequest();
+        http.open('HEAD', req.body.img_url, false);
+        try {
+            http.send()
+        } catch {
+            req.body.img_url = 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+        };
+        next();
+    },
+    // turn all the platforms into an array
+    body('name', 'Name must not be empty')
+        .trim()
+        .isLength({ min: 1})
+        .escape(),
+    asyncHandler(async(req, res, next) => {
+        const errors = validationResult(req);
+        // create a new Game
+        const platform = new Platform({
+            name: req.body.name,
+            img_url: req.body.img_url, 
+            _id: req.params.id 
+        })     
+        if (!errors.isEmpty()) {
+            const platform = await Platform.findById(req.params.id).exec();
+            res.render("platform_form", {title: "Update platform", platform: platform})
+        } else {
+            const theplatform = await Platform.findByIdAndUpdate(req.params.id, platform)
+            res.redirect(theplatform.url);
+        }
+    })
+]
