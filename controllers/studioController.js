@@ -1,4 +1,7 @@
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require("express-validator");
+var XMLHttpRequest = require('xhr2');
+
 
 const Studio = require("../models/studio");
 const Game = require("../models/game");
@@ -26,6 +29,43 @@ exports.studio_add_get = asyncHandler(async (req, res, next) => {
     res.render("studio_form", {title: "Add Studio"});
 })
 
-exports.game_add_post = asyncHandler(async (req, res, next) => {
+exports.studio_add_post = [
+    (req, res, next) => {
+        // for the image
+        var http = new XMLHttpRequest();
+        http.open('HEAD', req.body.img_url, false);
+        try {
+            http.send()
+        } catch {
+            req.body.img_url = 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+        };
+        next();
+    },
+    // turn all the platforms into an array
+    body('name', 'Name must not be empty')
+        .trim()
+        .isLength({ min: 1})
+        .escape(),
+    asyncHandler(async(req, res, next) => {
+        const errors = validationResult(req);
+        // create a new Game
+        const studio = new Studio({
+            name: req.body.name,
+            platforms: req.body.platform    
+        })     
+        if (!errors.isEmpty()) {
+            res.render("studio_form", {title: "Add Studio"});
+        } else {
+            await studio.save();
+            res.redirect(studio.url);
+        }
+    })
+]
 
+exports.studio_delete = asyncHandler(async(req, res, next) => {
+    // have to delete studio from any game with this as studio
+    await Game.updateMany({ studio:req.params.id}, {studio: null}).exec();
+    // delete the actual platform
+    await Studio.findByIdAndDelete(req.params.id);
+    res.redirect('/store/studios/');
 })

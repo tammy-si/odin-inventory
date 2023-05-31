@@ -54,7 +54,6 @@ exports.platform_add_post = [
             name: req.body.name,
             platforms: req.body.platform    
         })     
-        console.log(platform)
         if (!errors.isEmpty()) {
             res.render("platform_form", {title: "Add Platform"});
         } else {

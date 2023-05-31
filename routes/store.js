@@ -22,7 +22,13 @@ router.get('/games/:id/delete', game_controller.game_delete);
 /* studios route */
 router.get('/studios', studio_controller.studio_list);
 
+router.get('/studios/add', studio_controller.studio_add_get);
+
+router.post('/studios/add', studio_controller.studio_add_post);
+
 router.get('/studios/:id', studio_controller.studio_detail);
+
+router.get('/studios/:id/delete', studio_controller.studio_delete);
 
 /* platforms route */
 router.get('/platforms', platform_controller.platform_list);
