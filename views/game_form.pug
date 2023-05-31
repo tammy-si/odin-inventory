@@ -6,28 +6,36 @@ block content
     form(action='' method="POST")
       .form-group
         label(for='title') Title
-        input.form-control(name="title" type='text' aria-describedby='emailHelp' placeholder='Enter game title' required)
+        input.form-control(name="title" type='text' placeholder='Enter game title' value=(game===undefined ? "": game.title) required)
       .form-group 
         label(for='studio') Developer
         select(name='studio')
           option(value='') N/A
           for studio in allStudios 
-            option(value=studio._id) #{studio.name}
+            if game && game.studio
+              option(value=studio._id selected=(game.studio._id.toString() === studio._id.toString())) #{studio.name}
+            else
+              option(value=studio._id) #{studio.name}
       .form-group
         label(for='description') Description
-        input.form-control(name='description' type='text' placeholder='Description' required)
+        input.form-control(name='description' type='text' placeholder='Description' value=(game===undefined ? "": game.description)  required)
       .form-group
         label(for='price') Price
-        input.form-control(name='price' type='number' min=0 required placeholder=0)
+        input.form-control(name='price' type='number' min=0 required value=(game===undefined ? 0: game.price) )
       .form-group
         label(for='num_in_stock') Number in stock
-        input.form-control(name='num_in_stock' type='number' min=0 required placeholder=0) 
+        input.form-control(name='num_in_stock' type='number' min=0 required value=(game===undefined ? 0: game.num_in_stock)) 
       .form-group
         label(for='img_url') Image URL
-        input.form-control(name='img_url' type='text' placeholder='Image URL')
+        input.form-control(name='img_url' type='text' placeholder='Image URL' value=(game===undefined ? 0: game.img_url))
       p Available on:
       for platform in allPlatforms
         .form-check
-          input.form-check-input(type='checkbox' name='platform' value=platform._id)
+          if game
+            input.form-check-input(type='checkbox' name='platform' value=platform._id checked=platform.checked)
+          else
+            input.form-check-input(type='checkbox' name='platform' value=platform._id)
           label.form-check-label(for=platform._id) #{platform.name}
       button.btn.btn-primary(type='submit') Submit
+    
+    
