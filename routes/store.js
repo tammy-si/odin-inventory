@@ -33,6 +33,10 @@ router.get('/studios/:id', studio_controller.studio_detail);
 
 router.get('/studios/:id/delete', studio_controller.studio_delete);
 
+router.get('/studios/:id/update', studio_controller.studio_update_get);
+
+router.post('/studios/:id/update', studio_controller.studio_update_post);
+
 /* platforms route */
 router.get('/platforms', platform_controller.platform_list);
 

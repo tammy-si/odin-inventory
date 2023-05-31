@@ -69,3 +69,43 @@ exports.studio_delete = asyncHandler(async(req, res, next) => {
     await Studio.findByIdAndDelete(req.params.id);
     res.redirect('/store/studios/');
 })
+
+exports.studio_update_get = asyncHandler(async(req, res, next) => {
+    const studio = await Studio.findById(req.params.id).exec();
+    res.render("studio_form", {title: "Update studio", studio: studio})
+}) 
+
+exports.studio_update_post = [
+    (req, res, next) => {
+        // for the image
+        var http = new XMLHttpRequest();
+        http.open('HEAD', req.body.img_url, false);
+        try {
+            http.send()
+        } catch {
+            req.body.img_url = 'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg';
+        };
+        next();
+    },
+    // turn all the platforms into an array
+    body('name', 'Name must not be empty')
+        .trim()
+        .isLength({ min: 1})
+        .escape(),
+    asyncHandler(async(req, res, next) => {
+        const errors = validationResult(req);
+        // create a new Game
+        const studio = new Studio({
+            name: req.body.name,
+            platforms: req.body.platform, 
+            _id: req.params.id 
+        })     
+        if (!errors.isEmpty()) {
+            const studio = await Studio.findById(req.params.id).exec();
+            res.render("studio_form", {title: "Update studio", studio: studio})
+        } else {
+            const thestudio = await Studio.findByIdAndUpdate(req.params.id, studio)
+            res.redirect(thestudio.url);
+        }
+    })
+]
